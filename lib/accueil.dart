@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:my_day_tasks/login.dart';
+import 'package:my_day_tasks/signup.dart';
 
 
 class Welcome extends StatelessWidget{
   const Welcome({Key? key}) : super(key: key);
 
-  // static const Function() func = (){
-  //   Navigator.pushNamed(context, Login);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +34,10 @@ class Welcome extends StatelessWidget{
                   borderRadius: BorderRadius.circular(200),
                   color: Colors.deepPurple,
               ),
-              child: const MaterialButton(
-                onPressed: null,
+              child: MaterialButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                },
                 child: Text('Login',
                 style: TextStyle(color: Colors.white, fontSize: 15.0)),
               )
@@ -48,8 +49,10 @@ class Welcome extends StatelessWidget{
                   borderRadius: BorderRadius.circular(200),
                   color: Colors.deepPurple,
                 ),
-                child: const MaterialButton(
-                  onPressed: null,
+                child: MaterialButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                  },
                   child: Text('Sign Up',
                       style: TextStyle(color: Colors.white, fontSize: 15.0)),
                 ),)

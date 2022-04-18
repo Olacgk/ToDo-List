@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_day_tasks/signup.dart';
 
-class LoginPage extends StatelessWidget{
+class SignUpPage extends StatelessWidget{
 
   final _formKey = GlobalKey<FormState>();
   final _usernameController = new TextEditingController();
+  final _nameController = new TextEditingController();
   final _passwordController = new TextEditingController();
 
   @override
@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget{
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 15.0,),
-            Text('Sign in to continue !',
+            Text('Create your account here!',
               style: TextStyle(fontSize: 25.0),
               textAlign: TextAlign.center,),
             SizedBox(height: 40.0,),
@@ -47,7 +47,24 @@ class LoginPage extends StatelessWidget{
                     //       "This field is required !":null;
                     // },
                   ),
-                  SizedBox(height: 15.0,),
+                  const SizedBox(height: 15.0,),
+                  TextField(
+                    controller: _nameController,
+                    keyboardType: TextInputType.name,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.person),
+                      hintText: 'your name...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+                    ),
+                    // validator:(String? v) {
+                    //   return (v == null || v == "") ?
+                    //       "This field is required !":null;
+                    // },
+                  ),
+                  const SizedBox(height: 15.0,),
                   TextField(
                     controller: _passwordController,
                     keyboardType: TextInputType.text,
@@ -65,6 +82,25 @@ class LoginPage extends StatelessWidget{
                     //       "This field is required !":null;
                     // },
                   ),
+                  const SizedBox(height: 15.0,),
+                  TextField(
+                    controller: _passwordController,
+                    keyboardType: TextInputType.text,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.lock),
+                      hintText: ' confirm the password...',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(14)
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+                    ),
+                    // validator:(String? v) {
+                    //   return (v == null || v == "") ?
+                    //       "This field is required !":null;
+                    // },
+                  ),
+
                   const SizedBox(height: 40.0,),
                   Container(
                       width: 100,
@@ -74,35 +110,10 @@ class LoginPage extends StatelessWidget{
                       ),
                       child: const MaterialButton(
                         onPressed: null,
-                        child: Text('Login',
+                        child: Text('Sign Up',
                             style: TextStyle(color: Colors.white, fontSize: 15.0)),
                       )
                   ),
-
-                  const SizedBox(height: 5.0,),
-                  Row(
-                    children: [
-                      const Text(
-                        'Don\'t have an account ?',
-                        style: TextStyle(
-                          fontSize: 15.0,
-                          color: Colors.blue
-                        ),
-                      ),
-                      const SizedBox(width: 10.0,),
-                      InkWell(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
-                        },
-                        child: const Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            fontSize: 15.0
-                          ),
-                        ),
-                      )
-                    ],
-                  )
                 ],
               ),
             )
