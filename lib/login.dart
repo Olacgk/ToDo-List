@@ -16,16 +16,16 @@ class LoginPage extends StatelessWidget{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Welcome !',
               style: TextStyle(fontSize: 30.0),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 15.0,),
-            Text('Sign in to continue !',
+            const SizedBox(height: 15.0,),
+            const Text('Sign in to continue !',
               style: TextStyle(fontSize: 25.0),
               textAlign: TextAlign.center,),
-            SizedBox(height: 40.0,),
+            const SizedBox(height: 40.0,),
 
             Form(
               key: _formKey,
@@ -47,7 +47,7 @@ class LoginPage extends StatelessWidget{
                     //       "This field is required !":null;
                     // },
                   ),
-                  SizedBox(height: 15.0,),
+                  const SizedBox(height: 15.0,),
                   TextField(
                     controller: _passwordController,
                     keyboardType: TextInputType.text,
