@@ -11,6 +11,9 @@ class LoginPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 40.0),
         child: Column(
@@ -31,7 +34,7 @@ class LoginPage extends StatelessWidget{
               key: _formKey,
               child: Column(
                 children: [
-                  TextField(
+                  TextFormField(
                     controller: _usernameController,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
@@ -42,13 +45,13 @@ class LoginPage extends StatelessWidget{
                       ),
                       contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
                     ),
-                    // validator:(String? v) {
-                    //   return (v == null || v == "") ?
-                    //       "This field is required !":null;
-                    // },
+                    validator:(String? v) {
+                      return (v == null || v == "") ?
+                          "This field is required !":null;
+                    },
                   ),
                   const SizedBox(height: 15.0,),
-                  TextField(
+                  TextFormField(
                     controller: _passwordController,
                     keyboardType: TextInputType.text,
                     obscureText: true,
@@ -60,10 +63,10 @@ class LoginPage extends StatelessWidget{
                       ),
                       contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
                     ),
-                    // validator:(String? v) {
-                    //   return (v == null || v == "") ?
-                    //       "This field is required !":null;
-                    // },
+                    validator:(String? v) {
+                      return (v == null || v == "") ?
+                          "This field is required !":null;
+                    },
                   ),
                   const SizedBox(height: 40.0,),
                   Container(
@@ -79,7 +82,7 @@ class LoginPage extends StatelessWidget{
                       )
                   ),
 
-                  const SizedBox(height: 5.0,),
+                  const SizedBox(height: 15.0,),
                   Row(
                     children: [
                       const Text(
