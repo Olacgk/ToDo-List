@@ -1,12 +1,38 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_day_tasks/signup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginPage extends StatelessWidget{
+
+
+class LoginPage extends StatefulWidget{
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => LoginPageState();
+}
+
+class LoginPageState extends State<LoginPage>{
 
   final _formKey = GlobalKey<FormState>();
-  final _usernameController = new TextEditingController();
-  final _passwordController = new TextEditingController();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  String _username = "";
+  String _password = "";
+
+  _loadInformation() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _username = prefs.getString("username") ?? "";
+      _password = prefs.getString("password") ?? "";
+    });
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((_) => _loadInformation());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +41,7 @@ class LoginPage extends StatelessWidget{
         backgroundColor: Colors.deepPurple,
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 40.0),
+        padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 40.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -38,12 +64,12 @@ class LoginPage extends StatelessWidget{
                     controller: _usernameController,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.person),
+                      icon: const Icon(Icons.person),
                       hintText: 'username...',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
-                      contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
                     ),
                     validator:(String? v) {
                       return (v == null || v == "") ?
@@ -56,12 +82,12 @@ class LoginPage extends StatelessWidget{
                     keyboardType: TextInputType.text,
                     obscureText: true,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.lock),
+                      icon: const Icon(Icons.lock),
                       hintText: 'password...',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14)
                       ),
-                      contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
                     ),
                     validator:(String? v) {
                       return (v == null || v == "") ?

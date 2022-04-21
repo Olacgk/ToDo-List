@@ -10,7 +10,7 @@ class TaskList extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("My tasks"),
+        title: const Text("My tasks"),
       ),
       body: FutureBuilder<List<TaskModel>>(
         future: TaskDatabase.db.tasks(),
@@ -24,7 +24,7 @@ class TaskList extends StatelessWidget{
                 }
             );
           }else{
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
@@ -42,7 +42,7 @@ class TaskWidget extends StatelessWidget {
     return GestureDetector(
       onTap:null,
       child: Card(
-        margin: EdgeInsets.all(8),
+        margin: const EdgeInsets.all(8),
         elevation: 8,
         child: Row(
           children: [
@@ -53,7 +53,7 @@ class TaskWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(task.title,
                       style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                      const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                 ),
                 Text(task.date,
                     style: TextStyle(color: Colors.grey[500], fontSize: 16))
@@ -65,9 +65,9 @@ class TaskWidget extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Row(
-                    children: [
-                      IconButton(icon: const Icon(Icons.edit), color: Colors.blue, onPressed: null,),
-                      IconButton(icon: const Icon(Icons.delete), color: Colors.red, onPressed: null,),
+                    children: const [
+                      IconButton(icon: Icon(Icons.edit), color: Colors.blue, onPressed: null,),
+                      IconButton(icon: Icon(Icons.delete), color: Colors.red, onPressed: null,),
                     ],
                   )
                 )
