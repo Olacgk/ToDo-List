@@ -3,17 +3,14 @@ import 'package:my_day_tasks/homePage.dart';
 import 'package:my_day_tasks/signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
-class LoginPage extends StatefulWidget{
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => LoginPageState();
 }
 
-class LoginPageState extends State<LoginPage>{
-
+class LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -30,9 +27,24 @@ class LoginPageState extends State<LoginPage>{
   }
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) => _loadInformation());
+  }
+
+  void saveMember() async {
+    var formkeyState = _formKey.currentState;
+    if (formkeyState != null) {
+      if (formkeyState.validate()) {
+        final preferences = await SharedPreferences.getInstance();
+        preferences.setBool("connected", true);
+
+        Future.delayed(const Duration(seconds: 1), () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        });
+      }
+    }
   }
 
   @override
@@ -51,12 +63,17 @@ class LoginPageState extends State<LoginPage>{
               style: TextStyle(fontSize: 30.0),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 15.0,),
-            const Text('Sign in to continue !',
+            const SizedBox(
+              height: 15.0,
+            ),
+            const Text(
+              'Sign in to continue !',
               style: TextStyle(fontSize: 25.0),
-              textAlign: TextAlign.center,),
-            const SizedBox(height: 40.0,),
-
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 40.0,
+            ),
             Form(
               key: _formKey,
               child: Column(
@@ -70,14 +87,18 @@ class LoginPageState extends State<LoginPage>{
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
-                      contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 8.0),
                     ),
-                    validator:(String? v) {
-                      return (v == null || v == "") ?
-                          "This field is required !":null;
+                    validator: (String? v) {
+                      return (v == null || v == "")
+                          ? "This field is required !"
+                          : null;
                     },
                   ),
-                  const SizedBox(height: 15.0,),
+                  const SizedBox(
+                    height: 15.0,
+                  ),
                   TextFormField(
                     controller: _passwordController,
                     keyboardType: TextInputType.text,
@@ -86,51 +107,55 @@ class LoginPageState extends State<LoginPage>{
                       icon: const Icon(Icons.lock),
                       hintText: 'password...',
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14)
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
+                          borderRadius: BorderRadius.circular(14)),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 8.0),
                     ),
-                    validator:(String? v) {
-                      return (v == null || v == "") ?
-                          "This field is required !":null;
+                    validator: (String? v) {
+                      return (v == null || v == "")
+                          ? "This field is required !"
+                          : null;
                     },
                   ),
-                  const SizedBox(height: 40.0,),
+                  const SizedBox(
+                    height: 40.0,
+                  ),
                   Container(
                       width: 100,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(200),
                         color: Colors.deepPurple,
                       ),
-                      child:  MaterialButton(
-                        onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                        },
+                      child: MaterialButton(
+                        onPressed: () {
+                          saveMember();
+                          },
                         child: const Text('Login',
-                            style: TextStyle(color: Colors.white, fontSize: 15.0)),
-                      )
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15.0)),
+                      )),
+                  const SizedBox(
+                    height: 15.0,
                   ),
-
-                  const SizedBox(height: 15.0,),
                   Row(
                     children: [
                       const Text(
                         'Don\'t have an account ?',
-                        style: TextStyle(
-                          fontSize: 15.0,
-                          color: Colors.blue
-                        ),
+                        style: TextStyle(fontSize: 15.0, color: Colors.blue),
                       ),
-                      const SizedBox(width: 10.0,),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
                       InkWell(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignUpPage()));
                         },
                         child: const Text(
                           'Sign Up',
-                          style: TextStyle(
-                            fontSize: 15.0
-                          ),
+                          style: TextStyle(fontSize: 15.0),
                         ),
                       )
                     ],
@@ -143,5 +168,4 @@ class LoginPageState extends State<LoginPage>{
       ),
     );
   }
-
 }

@@ -42,10 +42,10 @@ class SignUpPage extends StatelessWidget{
                   children: [
                     TextFormField(
                       controller: _usernameController,
-                      keyboardType: TextInputType.name,
+                      keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         icon: Icon(Icons.person),
-                        hintText: 'username...',
+                        hintText: 'username',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
@@ -59,10 +59,10 @@ class SignUpPage extends StatelessWidget{
                     const SizedBox(height: 15.0,),
                     TextFormField(
                       controller: _nameController,
-                      keyboardType: TextInputType.name,
+                      keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         icon: Icon(Icons.person),
-                        hintText: 'your name...',
+                        hintText: 'name',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
