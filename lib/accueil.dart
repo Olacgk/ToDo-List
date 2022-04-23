@@ -36,9 +36,9 @@ class Welcome extends StatelessWidget{
               ),
               child: MaterialButton(
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                 },
-                child: Text('Login',
+                child: const Text('Login',
                 style: TextStyle(color: Colors.white, fontSize: 15.0)),
               )
               ),
@@ -53,7 +53,7 @@ class Welcome extends StatelessWidget{
                   onPressed: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
                   },
-                  child: Text('Sign Up',
+                  child: const Text('Sign Up',
                       style: TextStyle(color: Colors.white, fontSize: 15.0)),
                 ),)
             ],

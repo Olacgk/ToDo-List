@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_day_tasks/homePage.dart';
 import 'package:my_day_tasks/signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -101,9 +102,11 @@ class LoginPageState extends State<LoginPage>{
                         borderRadius: BorderRadius.circular(200),
                         color: Colors.deepPurple,
                       ),
-                      child: const MaterialButton(
-                        onPressed: null,
-                        child: Text('Login',
+                      child:  MaterialButton(
+                        onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                        },
+                        child: const Text('Login',
                             style: TextStyle(color: Colors.white, fontSize: 15.0)),
                       )
                   ),
